@@ -6,7 +6,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
 
-    modCompileOnly "net.impleri:player-skills-${rootProject.minecraft_version}:${rootProject.playerskills_version}"
+//    modCompileOnly "net.impleri:player-skills-${rootProject.minecraft_version}:${rootProject.playerskills_version}"
+    modImplementation files("../deps/player-skills-1.19.2-1.12.1-SNAPSHOT.jar")
 
     modCompileOnly "dev.latvian.mods:kubejs:${rootProject.kubejs_version}"
 
