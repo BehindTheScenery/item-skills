@@ -36,6 +36,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 class ItemEvents {
+    private int updateDelay = 0;
+
     public void registerEventHandlers() {
         LifecycleEvent.SERVER_STARTING.register(this::onStartup);
         TickEvent.PLAYER_POST.register(this::onPlayerTick);
@@ -69,6 +71,13 @@ class ItemEvents {
         if (player.getLevel().isClientSide) {
             return;
         }
+
+        if(updateDelay > 0) {
+            updateDelay--;
+            return;
+        }
+
+        updateDelay = 10;
 
         Inventory inventory = player.getInventory();
 
