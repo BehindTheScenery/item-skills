@@ -9,16 +9,16 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class InventoryHelper {
-    private static Predicate<ItemStack> shouldRemoveItem(Player player, boolean wearable) {
+    private static Predicate<ItemStack> shouldRemoveItem(Player player, boolean checkWearable) {
         return (ItemStack stack) -> {
             if (stack != null && !stack.isEmpty()) {
                 var item = ItemHelper.getItem(stack);
 
-                var isHoldable = ItemHelper.isHoldable(player, item, null);
+                if(!ItemHelper.isHoldable(player, item, null)) {
+                    return true;
+                }
 
-                var isWearable = !wearable || ItemHelper.isWearable(player, item, null);
-
-                return !isHoldable || !isWearable;
+                return !checkWearable || ItemHelper.isWearable(player, item, null);
             }
 
             return false;
